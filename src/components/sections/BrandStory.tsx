@@ -47,7 +47,7 @@ export function BrandStory() {
                     <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10" />
                     <motion.div
                         style={{ opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.5, 0.3]) }}
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black"
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-black to-black"
                     />
                 </div>
 
