@@ -56,7 +56,7 @@ export function Hero() {
                     We Architect the Calculus of K-Culture.
                     <br className="hidden md:block" />
                     <span className="text-gray-500 mt-4 block text-lg font-mono tracking-widest uppercase">
-                        Sonic IP • Accelerator • Protocol
+                        Music IP • Artist Management • Enter-Tech
                     </span>
                 </motion.p>
             </motion.div>
