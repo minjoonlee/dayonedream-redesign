@@ -1,6 +1,7 @@
 "use client";
 
 import { Hero } from "@/components/sections/Hero";
+import { BrandStory } from "@/components/sections/BrandStory"; // Scrollytelling
 import { About } from "@/components/sections/About";
 import { Artists } from "@/components/sections/Artists";
 import { Footer } from "@/components/layout/Footer";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <div className="bg-black min-h-screen text-white">
       <Hero />
+      <BrandStory />
       <About />
       <Business />
       <Subsidiaries />
