@@ -1,40 +1,40 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const STORY_STEPS = [
     {
-        id: "music",
-        title: "Music IP",
-        subtitle: "The Origin of Stardom",
-        description: "모든 것은 음악에서 시작됩니다. DOD는 전문 A&R과 글로벌 프로듀서 네트워크를 통해 K-pop의 새로운 음악을 창조합니다. 이 음악 IP가 우리 생태계의 씨앗입니다.",
-        highlight: "The Core",
-        image: "/assets/premium_music_core.png", // UPDATED ASSET
-        glowColor: "cyan",
-        glowSize: "medium"
+        id: 1,
+        title: "MUSIC IP",
+        subtitle: "The Origin",
+        desc: "Everything starts with music. We create high-value intellectual property that resonates globally.",
+        image: "/assets/realistic_studio.png",
+        highlight: "Production",
+        accent: "text-amber-500",
+        bgGradient: "from-amber-900/40"
     },
     {
-        id: "expansion",
-        title: "Expanding Universe",
-        subtitle: "Beyond the Stage",
-        description: "음악 IP는 팬과 만나 끊임없이 확장됩니다. 콘서트, 팝업스토어, MD, 뮤지컬, 퍼블리싱. 하나의 음악이 수만 개의 경험으로 변합니다. 팬덤이 있는 곳에 DOD가 있습니다.",
-        highlight: "IP Commerce & Live",
-        image: "/assets/story_anim_2.png", // Keeping original for now, needs matching style later
-        glowColor: "violet",
-        glowSize: "medium"
+        id: 2,
+        title: "EXPANSION",
+        subtitle: "The Growth",
+        desc: "From melody to moments. We expand IP into concerts, merchandise, and digital experiences.",
+        image: "/assets/realistic_concert.png",
+        highlight: "Live & Commerce",
+        accent: "text-purple-500",
+        bgGradient: "from-purple-900/40"
     },
     {
-        id: "ecosystem",
-        title: "Enter-Tech",
-        subtitle: "Co-Creation Ecosystem",
-        description: "팬은 더 이상 소비자가 아닙니다. DOD의 Enter-Tech 플랫폼은 팬이 아티스트의 성장에 직접 참여하고, 함께 가치를 나누는 지속 가능한 생태계를 만듭니다.",
-        highlight: "Future Platform",
-        image: "/assets/story_anim_3.png", // Keeping original for now
-        glowColor: "indigo",
-        glowSize: "large"
+        id: 3,
+        title: "UNIVERSE",
+        subtitle: "The Future",
+        desc: "A boundless ecosystem. Where technology meets fandom to create sustainable value.",
+        image: "/assets/realistic_universe.png",
+        highlight: "Platforms & Tech",
+        accent: "text-cyan-500",
+        bgGradient: "from-cyan-900/40"
     }
 ];
 
@@ -46,119 +46,85 @@ export function BrandStory() {
     });
 
     return (
-        <section ref={containerRef} className="relative h-[400vh] bg-[#030303]">
-            <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-                {/* Cinema-quality Atmosphere */}
-                <div className="absolute inset-0 z-0">
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900/40 via-[#050505] to-[#030303] z-10" />
-                     
-                     {/* Dynamic Ambient Light */}
-                     <motion.div 
-                        style={{ opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.5, 0.3]) }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vh] bg-[radial-gradient(circle,_rgba(56,189,248,0.03)_0%,_transparent_70%)] pointer-events-none"
-                     />
-                </div>
+        <section ref={containerRef} className="relative h-[400vh] bg-black">
 
-                {/* Central Visuals */}
-                <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center h-full">
+            {/* Sticky Background Container */}
+            <div className="sticky top-0 h-screen w-full overflow-hidden">
+                {STORY_STEPS.map((step, index) => {
+                    const start = index / STORY_STEPS.length;
+                    const end = (index + 1) / STORY_STEPS.length;
 
-                    {/* Left: 3D Visual Stage */}
-                    <div className="relative aspect-square w-full max-w-lg mx-auto perspective-1000">
-                        {STORY_STEPS.map((step, index) => {
-                            const start = index * 0.33;
-                            const end = start + 0.33;
-                            // eslint-disable-next-line react-hooks/rules-of-hooks
-                            const opacity = useTransform(
-                                scrollYProgress,
-                                [start, start + 0.1, end - 0.1, end],
-                                [0, 1, 1, 0]
-                            );
-                            // eslint-disable-next-line react-hooks/rules-of-hooks
-                            const visualScale = useTransform(
-                                scrollYProgress,
-                                [start, end],
-                                [0.9, 1.05]
-                            );
-                            // eslint-disable-next-line react-hooks/rules-of-hooks
-                            const yPos = useTransform(
-                                scrollYProgress,
-                                [start, end],
-                                [20, -20]
-                            );
+                    // Smooth crossfade
+                    const opacity = useTransform(scrollYProgress,
+                        [start, start + 0.1, end - 0.1, end],
+                        [0, 1, 1, 0]
+                    );
 
-                            return (
-                                <motion.div
-                                    key={step.id}
-                                    style={{ opacity, scale: visualScale, y: yPos }}
-                                    className="absolute inset-0 flex items-center justify-center"
-                                >
-                                    <div className="relative w-full h-full flex items-center justify-center">
-                                        {/* Premium Glow Effect */}
-                                        <div className="absolute inset-0 bg-cyan-500/10 blur-[100px] rounded-full mix-blend-screen" />
-                                        
-                                        <Image
-                                            src={step.image}
-                                            alt={step.title}
-                                            width={800}
-                                            height={800}
-                                            className="object-contain drop-shadow-[0_0_50px_rgba(34,211,238,0.2)]"
-                                            priority={index === 0}
-                                        />
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
+                    // Slow scale for cinematic feel
+                    const scale = useTransform(scrollYProgress,
+                        [start, end],
+                        [1, 1.1]
+                    );
 
-                    {/* Right: Narrative */}
-                    <div className="relative h-full flex flex-col justify-center">
-                        {STORY_STEPS.map((step, index) => {
-                            const start = index * 0.33;
-                            const end = start + 0.33;
-                            // eslint-disable-next-line react-hooks/rules-of-hooks
-                            const opacity = useTransform(
-                                scrollYProgress,
-                                [start, start + 0.15, end - 0.15, end],
-                                [0, 1, 1, 0]
-                            );
-                            // eslint-disable-next-line react-hooks/rules-of-hooks
-                            const y = useTransform(
-                                scrollYProgress,
-                                [start, start + 0.15, end - 0.1, end],
-                                [40, 0, 0, -40]
-                            );
-
-                            return (
-                                <motion.div
-                                    key={step.id}
-                                    style={{ opacity, y, pointerEvents: "none" }}
-                                    className="absolute inset-x-0 md:static md:inset-auto text-center md:text-left"
-                                >
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-xs font-medium text-cyan-200 tracking-widest uppercase">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                                        {step.highlight}
-                                    </div>
-                                    
-                                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-                                        {step.title}
-                                    </h2>
-                                    
-                                    <h3 className="text-2xl md:text-3xl text-gray-400 mb-8 font-light tracking-wide">
-                                        {step.subtitle}
-                                    </h3>
-                                    
-                                    <div className="relative">
-                                        <div className="absolute -inset-4 bg-white/5 blur-xl -z-10 rounded-full opacity-0" />
-                                        <p className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-lg mx-auto md:mx-0 font-light">
-                                            {step.description}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
-                </div>
+                    return (
+                        <motion.div
+                            key={`bg-${step.id}`}
+                            style={{ opacity, scale }}
+                            className="absolute inset-0 w-full h-full"
+                        >
+                            <Image
+                                src={step.image}
+                                alt={step.title}
+                                fill
+                                className="object-cover"
+                                priority={index === 0}
+                            />
+                            {/* Cinematic Gradient Overlays */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
+                            <div className={`absolute inset-0 bg-gradient-to-b ${step.bgGradient} to-transparent opacity-60 mix-blend-overlay`} />
+                        </motion.div>
+                    );
+                })}
             </div>
+
+            {/* Scrolling Text Content - Absolute positioning over the sticky container won't work for scrolling unless we put it in a separate container that is absolute to the section but relative to flow? 
+                Actually, the best pattern is: 
+                Section relative h-[400vh]
+                Sticky div top-0 h-screen (Backgrounds)
+                Absolute div top-0 w-full (Content Steps) --> They need to be spaced out by 100vh each.
+            */}
+            <div className="absolute top-0 left-0 w-full">
+                {STORY_STEPS.map((step, index) => (
+                    <div
+                        key={`text-${step.id}`}
+                        className="h-screen w-full flex items-center justify-center lg:justify-end lg:pr-32"
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            viewport={{ margin: "-20% 0px -20% 0px" }}
+                            className="max-w-xl p-10 bg-black/30 backdrop-blur-md border-l border-white/20"
+                        >
+                            <div className="flex items-center gap-4 mb-6">
+                                <span className={cn("text-xs font-bold tracking-[0.3em] uppercase", step.accent)}>
+                                    0{step.id} — {step.highlight}
+                                </span>
+                                <div className={`h-[1px] w-12 bg-current opacity-50 ${step.accent}`} />
+                            </div>
+
+                            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.85] drop-shadow-2xl">
+                                {step.title}
+                            </h2>
+
+                            <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed drop-shadow-md border-l-2 border-white/10 pl-6">
+                                {step.desc}
+                            </p>
+                        </motion.div>
+                    </div>
+                ))}
+            </div>
+
         </section>
     );
 }

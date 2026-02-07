@@ -78,14 +78,11 @@ export function Hero() {
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                     className="relative mb-8"
                 >
-                    <h1 className="text-7xl md:text-[9rem] lg:text-[11rem] font-bold tracking-tighter text-white leading-[0.85] select-none mix-blend-overlay opacity-50 absolute top-2 left-2 blur-sm">
-                        DAY ONE<br />DREAM
-                    </h1>
                     <h1 className="text-7xl md:text-[9rem] lg:text-[11rem] font-bold tracking-tighter text-white leading-[0.85] relative z-10">
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 filter drop-shadow-2xl">
                             DAY ONE
                         </span>
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 filter drop-shadow-2xl">
                             DREAM
                         </span>
                     </h1>

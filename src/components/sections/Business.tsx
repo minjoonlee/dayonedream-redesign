@@ -36,12 +36,20 @@ const businessAreas = [
         icon: "M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" // Ticket
     },
     {
-        title: "ENTER-TECH",
+        title: "ENT-AI TECH",
         subtitle: "The Future of Fandom",
-        desc: "콘텐츠 솔루션, 통합 플랫폼, IP 기반 신규 서비스. 기술로 팬 경험을 혁신하고 지속 가능한 엔터테인먼트 생태계를 구축합니다.",
+        desc: "콘텐츠 솔루션, 통합 플랫폼, AI 기반 신규 서비스. 기술로 팬 경험을 혁신하고 지속 가능한 엔터테인먼트 생태계를 구축합니다.",
         accentColor: "cyan",
         glowColor: "rgba(6, 182, 212, 0.4)",
         icon: "M13 10V3L4 14h7v7l9-11h-7z" // Lightning
+    },
+    {
+        title: "IP-BLOCKCHAIN",
+        subtitle: "Financing K-Culture",
+        desc: "IP 수익화의 실현. K콘텐츠 중심의 글로벌 투자상품(RWAs)을 통해 팬과 함께 성장하는 금융 생태계를 만듭니다.",
+        accentColor: "blue",
+        glowColor: "rgba(37, 99, 235, 0.4)",
+        icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" // Coin / Blockchain
     }
 ];
 
@@ -100,7 +108,6 @@ export function Business() {
                                 overflow-hidden
                                 transition-all duration-500
                                 hover:border-white/20
-                                ${i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}
                             `}
                         >
                             {/* Hover Gradient Background */}
