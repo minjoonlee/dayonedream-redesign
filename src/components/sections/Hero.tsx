@@ -14,39 +14,45 @@ export function Hero() {
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+            // Smoothler interpolation could be added here, but direct mapping is responsive
+            setMousePosition({
+                x: (e.clientX - window.innerWidth / 2) / window.innerWidth,
+                y: (e.clientY - window.innerHeight / 2) / window.innerHeight
+            });
         };
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
     return (
-        <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
-            {/* Background Video */}
+        <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#030303]">
+            {/* Background Video with Premium Overlay */}
             <motion.div
                 style={{ y, scale }}
                 className="absolute inset-0 z-0"
             >
-                <div className="absolute inset-0 bg-black/60 z-10" />
+                <div className="absolute inset-0 bg-black/40 z-10" />
+                {/* Gradient Overlay for Depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-black/60 z-10" />
+
                 <video
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
                 >
                     <source src="/assets/hero_video.mp4" type="video/mp4" />
                 </video>
             </motion.div>
 
-            {/* Radial Gradient Pulse */}
+            {/* Ambient Glow */}
             <motion.div
                 animate={{
-                    scale: [1, 1.2, 1],
                     opacity: [0.3, 0.5, 0.3],
                 }}
                 transition={{
@@ -56,7 +62,7 @@ export function Hero() {
                 }}
                 className="absolute inset-0 z-10 pointer-events-none"
                 style={{
-                    background: "radial-gradient(circle at center, rgba(0, 217, 255, 0.15) 0%, rgba(59, 130, 246, 0.1) 30%, rgba(147, 51, 234, 0.05) 60%, transparent 100%)",
+                    background: "radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.1) 0%, transparent 60%)",
                 }}
             />
 
@@ -65,118 +71,77 @@ export function Hero() {
                 style={{ opacity }}
                 className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4"
             >
-                {/* Kinetic Typography Title */}
-                <motion.h1
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                    className="text-6xl md:text-[8rem] lg:text-[10rem] font-black tracking-tighter text-white mb-6 leading-[0.8] relative"
-                >
-                    <motion.span
-                        animate={{
-                            letterSpacing: ["0em", "0.02em", "0em"],
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                        className="block"
-                        style={{
-                            background: "linear-gradient(135deg, #ffffff 0%, #00D9FF 50%, #ffffff 100%)",
-                            backgroundSize: "200% 200%",
-                            backgroundClip: "text",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                        }}
-                    >
-                        DAY ONE
-                    </motion.span>
-                    <motion.span
-                        animate={{
-                            letterSpacing: ["0em", "0.02em", "0em"],
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 0.5,
-                        }}
-                        className="block"
-                        style={{
-                            background: "linear-gradient(135deg, #ffffff 0%, #00D9FF 50%, #ffffff 100%)",
-                            backgroundSize: "200% 200%",
-                            backgroundClip: "text",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                        }}
-                    >
-                        DREAM
-                    </motion.span>
-                </motion.h1>
-
-                {/* New Main Tagline */}
-                <motion.p
+                {/* Main Title - Premium Typography */}
+                <motion.div
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
-                    className="text-2xl md:text-3xl font-light text-white max-w-4xl mb-6"
-                    style={{
-                        textShadow: "0 0 30px rgba(0, 217, 255, 0.3)",
-                    }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                    className="relative mb-8"
+                >
+                    <h1 className="text-7xl md:text-[9rem] lg:text-[11rem] font-bold tracking-tighter text-white leading-[0.85] select-none mix-blend-overlay opacity-50 absolute top-2 left-2 blur-sm">
+                        DAY ONE<br />DREAM
+                    </h1>
+                    <h1 className="text-7xl md:text-[9rem] lg:text-[11rem] font-bold tracking-tighter text-white leading-[0.85] relative z-10">
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+                            DAY ONE
+                        </span>
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+                            DREAM
+                        </span>
+                    </h1>
+                </motion.div>
+
+                {/* Tagline - Refined */}
+                <motion.p
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
+                    className="text-xl md:text-2xl font-light text-cyan-50/80 max-w-2xl mb-12 tracking-wide"
                 >
                     Where Music IP Expands Into Everything
                 </motion.p>
 
-                {/* Sequential Keyword Animation */}
-                <div className="flex flex-wrap gap-3 md:gap-4 justify-center items-center max-w-5xl">
+                {/* Keywords - Minimalist Pills */}
+                <div className="flex flex-wrap gap-4 justify-center items-center max-w-4xl">
                     {[
-                        { text: "Music IP", delay: 1.0 },
-                        { text: "Artist Management", delay: 1.2 },
-                        { text: "IP Commerce", delay: 1.4 },
-                        { text: "Live Entertainment", delay: 1.6 },
-                        { text: "Enter-Tech", delay: 1.8 },
-                    ].map((item, index) => (
+                        "Music IP",
+                        "Artist Management",
+                        "IP Commerce",
+                        "Live Entertainment",
+                        "Enter-Tech",
+                    ].map((text, index) => (
                         <motion.span
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{
-                                duration: 0.6,
+                                duration: 0.5,
                                 ease: "easeOut",
-                                delay: item.delay,
+                                delay: 1.2 + (index * 0.1),
                             }}
-                            className="text-sm md:text-base font-mono tracking-wider uppercase px-4 py-2 rounded-full border border-cyan-500/30 text-cyan-300 bg-cyan-950/20 backdrop-blur-sm"
-                            style={{
-                                boxShadow: "0 0 20px rgba(0, 217, 255, 0.1)",
-                            }}
+                            className="text-xs md:text-sm font-medium tracking-widest uppercase px-5 py-2.5 rounded-full border border-white/10 text-white/70 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default"
                         >
-                            {item.text}
+                            {text}
                         </motion.span>
                     ))}
                 </div>
             </motion.div>
 
-            {/* Refined Scroll Indicator */}
+            {/* Scroll Indicator - Minimal */}
             <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{
-                    opacity: { delay: 2.5, duration: 0.8 },
-                    y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
-                }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.5, duration: 1 }}
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
             >
-                <div className="w-6 h-10 border-2 border-cyan-400/50 rounded-full flex items-start justify-center p-2">
+                <span className="text-white/30 text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+                <div className="h-16 w-[1px] bg-gradient-to-b from-white/0 via-white/50 to-white/0 overflow-hidden">
                     <motion.div
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                        className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
+                        animate={{ y: ["-100%", "100%"] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                        className="w-full h-1/2 bg-gradient-to-b from-transparent to-cyan-400"
                     />
                 </div>
-                <span className="text-cyan-300/70 text-xs uppercase tracking-widest font-mono">
-                    Scroll to Explore
-                </span>
             </motion.div>
         </div>
     );
