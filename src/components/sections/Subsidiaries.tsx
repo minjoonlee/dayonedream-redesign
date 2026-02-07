@@ -21,6 +21,24 @@ const subsidiaries = [
         name: "SET THE STAGE",
         desc: "라이브 중심의 공연과 아티스트 IP를 발굴-기획-제작-운영하며, 'LIVE'만이 줄 수 있는 감동을 만드는 Live Entertainment Company입니다.\nA live entertainment company that delivers the true emotion of 'LIVE'.",
         link: "#"
+    },
+    {
+        role: "Subsidiary | Publishing",
+        name: "On a Loop",
+        desc: "글로벌 유명 작곡가들의 저작권 및 저작인접권을 보유하고 관리합니다. 히트 작곡가 및 프로듀서의 다양한 장르 음악을 퍼블리싱합니다.\nManaging copyrights and neighboring rights of global hit songwriters.",
+        link: "#"
+    },
+    {
+        role: "Subsidiary | Print & Manufacturing",
+        name: "DREAM PRESS ARCHIVE",
+        desc: "앨범 인쇄, MD 인쇄, 간행물 인쇄, 상업 인쇄 등 IP 기반 인쇄 솔루션을 제공합니다.\nProviding IP-based printing solutions for albums, MD, and publications.",
+        link: "#"
+    },
+    {
+        role: "Subsidiary | Content Solution",
+        name: "VOYD",
+        desc: "콘텐츠 솔루션 개발, R&D, 운영 및 유지보수를 담당하는 테크 자회사입니다.\nA tech subsidiary for content solutions, R&D, and platform operations.",
+        link: "#"
     }
 ];
 
@@ -44,11 +62,10 @@ export function Subsidiaries() {
                         </h2>
                         <h3 className="text-2xl font-medium mb-6 leading-relaxed text-gray-200">
                             Designing the 'Day One' of Dreamers.<br className="hidden md:block" />
-                            우리는 K-Culture IP를 단순한 콘텐츠가 아닌 '영구적 자산(Perpetual Asset)'으로 격상시킵니다.
+                            우리는 음악 IP를 중심으로, 팬이 행복한 모든 순간을 설계합니다. 하나의 꿈이 수만 개의 경험으로 확장되는 생태계.
                         </h3>
                         <p className="text-gray-500 font-light leading-relaxed">
-                            We define K-Culture IP as an Asset, maximizing its value through Technology and Finance.
-                            Day One Dream is the Global Enter-Tech Platform where intangible dreams become tangible value.
+                            We design every moment where fans find happiness through music IP. One dream expanding into countless experiences.
                         </p>
                     </div>
                 </div>

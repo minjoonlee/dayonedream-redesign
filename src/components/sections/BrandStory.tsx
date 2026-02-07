@@ -8,27 +8,33 @@ import { cn } from "@/lib/utils";
 const STORY_STEPS = [
     {
         id: "music",
-        title: "Music Experience",
-        subtitle: "From CD & Tape to Streaming",
-        description: "It starts with a single person listening. Whether it was a cassette tape in a Walkman or a stream on a smartphone, the essence of music production is creating that personal moment of connection.",
-        highlight: "Music IP",
-        image: "/assets/story_anim_1.png"
+        title: "Music IP",
+        subtitle: "Where Every Dream Begins",
+        description: "모든 것은 음악에서 시작됩니다. DOD는 전문 A&R과 글로벌 프로듀서 네트워크를 통해 K-pop의 새로운 음악을 창조합니다. 이 음악 IP가 우리 생태계의 씨앗입니다.",
+        highlight: "The Seed",
+        image: "/assets/story_anim_1.png",
+        glowColor: "blue",
+        glowSize: "small"
     },
     {
-        id: "fandom",
-        title: "Fandom Connection",
-        subtitle: "Concerts, Pop-ups, Fan Meetings",
-        description: "The experience expands offline. Visiting pop-up stores, screaming at concerts, and meeting artists face-to-face. It transforms from 'listening' to 'living' the culture together.",
-        highlight: "Offline Culture",
-        image: "/assets/story_anim_2.png"
+        id: "expansion",
+        title: "Expanding Universe",
+        subtitle: "From Music to Everything",
+        description: "음악 IP는 팬과 만나 끊임없이 확장됩니다. 콘서트, 팝업스토어, MD, 뮤지컬, 퍼블리싱. 하나의 음악이 수만 개의 경험으로 변합니다. 팬덤이 있는 곳에 DOD가 있습니다.",
+        highlight: "IP Commerce · Live · Publishing",
+        image: "/assets/story_anim_2.png",
+        glowColor: "purple",
+        glowSize: "medium"
     },
     {
-        id: "tech",
-        title: "Enter-Tech Expansion",
-        subtitle: "Invest, Create, Reward",
-        description: "The final evolution. Fans become contributors. By investing in the artist's growth and sharing the rewards, we create a sustainable ecosystem where we fight and grow together.",
+        id: "ecosystem",
+        title: "Enter-Tech",
+        subtitle: "Where Fans Become Partners",
+        description: "팬은 더 이상 소비자가 아닙니다. DOD의 Enter-Tech 플랫폼은 팬이 아티스트의 성장에 직접 참여하고, 함께 가치를 나누는 지속 가능한 생태계를 만듭니다.",
         highlight: "Co-Creation Economy",
-        image: "/assets/story_anim_3.png"
+        image: "/assets/story_anim_3.png",
+        glowColor: "teal",
+        glowSize: "large"
     }
 ];
 
@@ -42,12 +48,32 @@ export function BrandStory() {
     return (
         <section ref={containerRef} className="relative h-[400vh] bg-black">
             <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-                {/* Background Atmosphere */}
+                {/* Background Atmosphere with Dynamic Glow */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10" />
+
+                    {/* Step 1: Blue Glow - Small */}
                     <motion.div
-                        style={{ opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.5, 0.3]) }}
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-black to-black"
+                        style={{
+                            opacity: useTransform(scrollYProgress, [0, 0.1, 0.3, 0.33], [0.4, 0.6, 0.6, 0])
+                        }}
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-blue-900/10 via-40% to-black"
+                    />
+
+                    {/* Step 2: Purple/Magenta Glow - Medium */}
+                    <motion.div
+                        style={{
+                            opacity: useTransform(scrollYProgress, [0.3, 0.4, 0.63, 0.66], [0, 0.6, 0.6, 0])
+                        }}
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/25 via-pink-900/15 via-30% to-black"
+                    />
+
+                    {/* Step 3: Teal/Cyan Glow - Large (Full screen) */}
+                    <motion.div
+                        style={{
+                            opacity: useTransform(scrollYProgress, [0.63, 0.7, 1], [0, 0.7, 0.5])
+                        }}
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-400/30 via-cyan-900/20 via-20% to-black"
                     />
                 </div>
 
@@ -76,6 +102,19 @@ export function BrandStory() {
                                 [0.8, 1.1]
                             );
 
+                            // Glow configuration per step
+                            const glowConfig = {
+                                small: "blur-[80px] scale-75",
+                                medium: "blur-[120px] scale-100",
+                                large: "blur-[160px] scale-150"
+                            };
+
+                            const glowColors = {
+                                blue: "bg-blue-500/30",
+                                purple: "bg-purple-500/35",
+                                teal: "bg-teal-400/40"
+                            };
+
                             return (
                                 <motion.div
                                     key={step.id}
@@ -83,7 +122,13 @@ export function BrandStory() {
                                     className="absolute inset-0 flex items-center justify-center"
                                 >
                                     <div className="relative w-full h-full">
-                                        <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full" />
+                                        <div
+                                            className={cn(
+                                                "absolute inset-0 rounded-full transition-all duration-1000",
+                                                glowColors[step.glowColor as keyof typeof glowColors],
+                                                glowConfig[step.glowSize as keyof typeof glowConfig]
+                                            )}
+                                        />
                                         <Image
                                             src={step.image}
                                             alt={step.title}
@@ -98,29 +143,69 @@ export function BrandStory() {
 
                     {/* Right: Text Narrative */}
                     <div className="relative h-full flex flex-col justify-center">
+                        {/* Progress Indicator */}
+                        <div className="absolute top-8 left-0 md:left-auto md:top-auto md:bottom-8 flex gap-2 z-20">
+                            {STORY_STEPS.map((_, index) => {
+                                const start = index * 0.33;
+                                const end = start + 0.33;
+                                // eslint-disable-next-line react-hooks/rules-of-hooks
+                                const dotOpacity = useTransform(
+                                    scrollYProgress,
+                                    [start, start + 0.05, end - 0.05, end],
+                                    [0.3, 1, 1, 0.3]
+                                );
+                                // eslint-disable-next-line react-hooks/rules-of-hooks
+                                const dotScale = useTransform(
+                                    scrollYProgress,
+                                    [start, start + 0.05, end - 0.05, end],
+                                    [0.8, 1.2, 1.2, 0.8]
+                                );
+
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        style={{ opacity: dotOpacity, scale: dotScale }}
+                                        className="w-2 h-2 rounded-full bg-white"
+                                    />
+                                );
+                            })}
+                        </div>
+
                         {STORY_STEPS.map((step, index) => {
                             const start = index * 0.33;
                             const end = start + 0.33;
                             // eslint-disable-next-line react-hooks/rules-of-hooks
                             const opacity = useTransform(
                                 scrollYProgress,
-                                [start, start + 0.1, end - 0.2, end],
+                                [start, start + 0.15, end - 0.15, end],
                                 [0, 1, 1, 0]
                             );
                             // eslint-disable-next-line react-hooks/rules-of-hooks
                             const y = useTransform(
                                 scrollYProgress,
-                                [start, start + 0.1, end],
-                                [50, 0, -50]
+                                [start, start + 0.15, end - 0.1, end],
+                                [30, 0, 0, -30]
                             );
+
+                            // Badge colors per step
+                            const badgeColors = {
+                                blue: "border-blue-500/30 bg-blue-500/10 text-blue-400",
+                                purple: "border-purple-500/30 bg-purple-500/10 text-purple-400",
+                                teal: "border-teal-500/30 bg-teal-500/10 text-teal-400"
+                            };
 
                             return (
                                 <motion.div
                                     key={step.id}
-                                    style={{ opacity, y, pointerEvents: "none" }} // pointer-events-none to prevent overlay issues
+                                    style={{ opacity, y, pointerEvents: "none" }}
                                     className="absolute inset-x-0 md:static md:inset-auto text-center md:text-left p-6 md:p-0"
                                 >
-                                    <div className="inline-block px-3 py-1 mb-4 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono uppercase tracking-widest backdrop-blur-md">
+                                    <div
+                                        className={cn(
+                                            "inline-block px-3 py-1 mb-4 rounded-full border text-xs font-mono uppercase tracking-widest backdrop-blur-md",
+                                            badgeColors[step.glowColor as keyof typeof badgeColors]
+                                        )}
+                                    >
                                         Step 0{index + 1} • {step.highlight}
                                     </div>
                                     <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter">

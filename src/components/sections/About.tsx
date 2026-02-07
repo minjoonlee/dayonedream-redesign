@@ -27,15 +27,15 @@ export function About() {
                 {/* English Vision - Kinetic */}
                 <div className="mb-20">
                     <h3 className="text-4xl md:text-7xl font-bold leading-none tracking-tighter mb-8">
-                        <KineticText text="ENGINEERING THE NEXT WAVE OF ENTERTAINMENT" />
+                        <KineticText text="FROM ONE SONG TO AN ENTIRE UNIVERSE" />
                     </h3>
                 </div>
 
                 {/* Korean Vision - Kinetic with Delay */}
                 <div className="space-y-8 text-gray-300">
-                    <h4 className="text-xl font-bold tracking-widest text-white">THE NEXT MUSIC ERA</h4>
+                    <h4 className="text-xl font-bold tracking-widest text-white">CONTENT SYSTEM ARCHITECT</h4>
                     <div className="text-lg md:text-2xl leading-relaxed font-light text-gray-400">
-                        <KineticText text="디오디(DOD)는 K-Culture IP를 '자산(Asset)'으로 정의하고, 금융(STO)과 기술(Web3)로 가치를 극대화하는 '글로벌 엔터-테크(Enter-Tech) 플랫폼'입니다. 음악에서 시작된 IP가 끊임없이 확장되고 지속 가능한 가치로 성장하는 에코시스템을 구축합니다." />
+                        <KineticText text="디오디(DOD)는 음악 IP를 중심으로 콘텐츠 생태계를 설계하는 'Content System Architect'입니다. 하나의 음악이 공연이 되고, 커머스가 되고, 기술이 되어 전 세계 팬덤에게 새로운 행복을 전합니다. 우리는 꿈의 첫날을 설계합니다." />
                     </div>
                 </div>
             </div>
