@@ -63,7 +63,7 @@ const accentColorClasses = {
 
 export function Business() {
     return (
-        <section className="bg-black text-white py-32 md:py-40 relative overflow-hidden">
+        <section className="bg-black text-white py-20 md:py-40 relative overflow-hidden">
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-900/40 via-black to-black" />
 
@@ -74,7 +74,7 @@ export function Business() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="mb-24"
+                    className="mb-16 md:mb-24"
                 >
                     <h2 className="text-xs font-bold text-gray-500 tracking-[0.3em] uppercase mb-8 flex items-center gap-4">
                         <span className="w-12 h-[1px] bg-gray-700"></span>

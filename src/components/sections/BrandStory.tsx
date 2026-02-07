@@ -49,7 +49,7 @@ export function BrandStory() {
         <section ref={containerRef} className="relative h-[400vh] bg-black">
 
             {/* Sticky Background Container */}
-            <div className="sticky top-0 h-screen w-full overflow-hidden">
+            <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
                 {STORY_STEPS.map((step, index) => {
                     const start = index / STORY_STEPS.length;
                     const end = (index + 1) / STORY_STEPS.length;
@@ -97,27 +97,27 @@ export function BrandStory() {
                 {STORY_STEPS.map((step, index) => (
                     <div
                         key={`text-${step.id}`}
-                        className="h-screen w-full flex items-center justify-center lg:justify-end lg:pr-32"
+                        className="h-[100dvh] w-full flex items-center justify-center lg:justify-end lg:pr-32"
                     >
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 1, ease: "easeOut" }}
                             viewport={{ margin: "-20% 0px -20% 0px" }}
-                            className="max-w-xl p-10 bg-black/30 backdrop-blur-md border-l border-white/20"
+                            className="max-w-[90%] md:max-w-xl p-8 md:p-10 bg-black/30 backdrop-blur-md border-l border-white/20"
                         >
-                            <div className="flex items-center gap-4 mb-6">
+                            <div className="flex items-center gap-4 mb-4 md:mb-6">
                                 <span className={cn("text-xs font-bold tracking-[0.3em] uppercase", step.accent)}>
                                     0{step.id} — {step.highlight}
                                 </span>
-                                <div className={`h-[1px] w-12 bg-current opacity-50 ${step.accent}`} />
+                                <div className={`h-[1px] w-8 md:w-12 bg-current opacity-50 ${step.accent}`} />
                             </div>
 
-                            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.85] drop-shadow-2xl">
+                            <h2 className="text-5xl md:text-8xl font-black text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] drop-shadow-2xl">
                                 {step.title}
                             </h2>
 
-                            <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed drop-shadow-md border-l-2 border-white/10 pl-6">
+                            <p className="text-lg md:text-2xl text-gray-200 font-light leading-relaxed drop-shadow-md border-l-2 border-white/10 pl-6">
                                 {step.desc}
                             </p>
                         </motion.div>
